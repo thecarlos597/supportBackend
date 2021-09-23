@@ -29,4 +29,7 @@ public interface TurnRepository extends JpaRepository< Turn,Integer>{
 
     @Query("Select t from Turn t where t.number = ?1 and t.customerId.documentNumber = ?2")
     public Optional<Turn> findTurnPerDocumentCustomer(Integer number, String customerDocument);
+
+    @Query("Select t from Turn t where t.customerId.documentNumber = ?1 order by t.turnDate desc")
+    public List<Turn> findTurnsByDocumentNumber(String documentNumber);
 }

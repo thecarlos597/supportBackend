@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -29,7 +30,7 @@ public class CustomerService {
 
     @GetMapping("/search/{document}")
     @CrossOrigin(origins = "*")
-    public Customer getCustomerByDocumentNumber(@PathVariable String document){
-        return this.customerController.getCustomerByDocumentNumber(document);
+    public Map getCustomerByDocumentNumber(@PathVariable String document){
+        return this.customerController.getCustomerAndTurnsByDocumentNumber(document);
     }
 }
