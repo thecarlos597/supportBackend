@@ -6,6 +6,7 @@ import com.neoris.support.exceptions.CreateTurnException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/turns")
 public class TurnService {
@@ -13,8 +14,9 @@ public class TurnService {
     @Autowired
     TurnController turnController;
 
-    @PostMapping("/create")
-    public Turn createTurn (@RequestParam String document){
+    @PostMapping("/create/{document}")
+    @CrossOrigin(origins = "*")
+    public Turn createTurn (@PathVariable String document){
         try{
             return this.turnController.createTurn(document);
         }
@@ -24,6 +26,7 @@ public class TurnService {
         }
     }
     @PostMapping("/attend/{n}/{document}")
+    @CrossOrigin(origins = "*")
     public String attendCustomer(@PathVariable Integer n, @PathVariable String document){
         try{
             return this.turnController.changeTurnStatus(n,document);
